@@ -1,9 +1,9 @@
 c===========================================================================
 c
 c   This file is part of TISEAN
-c 
+c
 c   Copyright (c) 1998-2007 Rainer Hegger, Holger Kantz, Thomas Schreiber
-c 
+c
 c   TISEAN is free software; you can redistribute it and/or modify
 c   it under the terms of the GNU General Public License as published by
 c   the Free Software Foundation; either version 2 of the License, or
@@ -28,9 +28,9 @@ c===========================================================================
       parameter(nx=100000,mx=10)
       dimension x(nx,mx), icol(mx)
       character*72 file, fout
+      external rand
       data kmax/100/, res/2./
       data iverb/1/
-      external rand
 
       call whatido("fixed mass approach to d1 estimation",iverb)
       id=imust("d")

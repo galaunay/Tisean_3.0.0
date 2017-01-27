@@ -1,9 +1,9 @@
 c===========================================================================
 c
 c   This file is part of TISEAN
-c 
+c
 c   Copyright (c) 1998-2007 Rainer Hegger, Holger Kantz, Thomas Schreiber
-c 
+c
 c   TISEAN is free software; you can redistribute it and/or modify
 c   it under the terms of the GNU General Public License as published by
 c   the Free Software Foundation; either version 2 of the License, or
@@ -23,11 +23,11 @@ c   Create multivariate surrogate data
 c   author T. Schreiber (1999)
 c===========================================================================
       parameter(nx=100000,mx=20)
-      dimension xx(nx,mx), x(nx,mx), y(nx,mx), xamp(nx,mx), 
+      dimension xx(nx,mx), x(nx,mx), y(nx,mx), xamp(nx,mx),
      .   xsort(nx,mx), list(nx), icol(mx), rwork(nx)
       character*72 file, fout
-      data nsur/1/, imax/-1/
       external rand
+      data nsur/1/, imax/-1/
       data iverb/15/
 
       call whatido("Create Multivariate Surrogate data",iverb)
@@ -45,14 +45,14 @@ c===========================================================================
       call nthstring(1,file)
       call xreadfile(nmax,mcmax,nx,xx,nexcl,icol,file,iverb)
       nmaxp=nless(nmax)
-      if(nmaxp.ne.nmax.and.iv_io(iverb).eq.1) 
+      if(nmaxp.ne.nmax.and.iv_io(iverb).eq.1)
      .   write(istderr(),*) "surrogates: using first ", nmaxp
       if(file.eq."-") file="stdin"
       if(isout.eq.1) call addsuff(fout,file,"_surr")
       if(nsur.gt.1.and.isout.eq.1) call suffix(fout,"_000")
 
       do 10 isur=1,nsur
-         if(nsur.gt.1.and.isout.eq.1) 
+         if(nsur.gt.1.and.isout.eq.1)
      .      write(fout(index(fout," ")-3:72),'(i3.3)') isur
          do 20 m=1,mcmax
             do 30 n=1,nmaxp
@@ -84,8 +84,8 @@ c===========================================================================
          else
             call xwritefile(nmaxp,mcmax,nx,x,fout,iverb)
          endif
- 10      if(iv_surr(iverb).eq.1) write(istderr(),*) 
-     .      fout(1:index(fout," ")), ' (', it, 
+ 10      if(iv_surr(iverb).eq.1) write(istderr(),*)
+     .      fout(1:index(fout," ")), ' (', it,
      .      ' iterations, relative discrepancy ', dspec,   ')'
       end
 
@@ -112,11 +112,11 @@ c usage message
 
       function toxspec(nmax,mmax,nxx,a,x)
       parameter(nx=100000,mx=20,tol=1e-5)
-      dimension x(nxx,mmax), a(nxx,mmax), w(nx,mx), w1(nx), 
+      dimension x(nxx,mmax), a(nxx,mmax), w(nx,mx), w1(nx),
      .   w2(nx), iw(15), goal(mx)
 
       if(nmax.gt.nx.or.mmax.gt.mx) stop "toxspec: make nx/mx larger."
-      call rffti1(nmax,w2,iw)  
+      call rffti1(nmax,w2,iw)
       do 10 m=1,mmax
          do 20 n=1,nmax
  20         w(n,m)=x(n,m)
@@ -176,4 +176,3 @@ c usage message
       do 10 n=1,nmax
  10      y(n)=dist(list(n))
       end
-
