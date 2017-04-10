@@ -95,8 +95,8 @@ fi
 
 AC_SUBST(CC)
 
-for fff in "$FC" f77 g77 "f77 +U77" "f77 -q -f -B108 -lU77"; do
-   if test -z "$fff"; then 
+for fff in "$FC" gfortran f77 g77 "f77 +U77" "f77 -q -f -B108 -lU77"; do
+   if test -z "$fff"; then
       continue
    fi
    FC=$fff
